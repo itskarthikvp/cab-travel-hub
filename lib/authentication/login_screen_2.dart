@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:users_app/authentication/signup_screen_2.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -41,6 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: Colors.deepPurple.withOpacity(.2)
                     ),
                     child: TextFormField(
+                      controller: username,
                       validator: (value){
                         if(value!.isEmpty) {
                           return "username is empty";
@@ -64,6 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: Colors.deepPurple.withOpacity(.2)
                     ),
                     child: TextFormField(
+                      controller: password,
                       validator: (value){
                         if(value!.isEmpty) {
                           return "password is empty";
@@ -111,6 +114,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       const Text("Don't have an account?"),
                       TextButton(onPressed: () {
+                        //Navidate to Sign UP page
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> const SignUp()));
 
                       }, child: const Text("SIGN UP"))
                     ],
