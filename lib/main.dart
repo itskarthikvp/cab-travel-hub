@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:users_app/authentication/signup_screen_2.dart';
 import 'authentication/login_screen.dart';
+import 'authentication/login_screen_2.dart';
+import 'authentication/signup_screen_2.dart';
 
 
 void main() {
@@ -16,7 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LoginPage(), // Use LoginPage as the home widget
+      home: LoginScreen(), // Use LoginPage as the home widget
     );
   }
 }
