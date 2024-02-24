@@ -1,28 +1,23 @@
-// To parse this JSON data, do
-//
-//     final users = welcomeFromJson(jsonString);
-
-
 class Users {
-  int? userId;
-  String usrName;
-  String password;
+  final int? usrId;
+  final String usrName;
+  final String usrPassword;
 
   Users({
-     this.userId,
+    this.usrId,
     required this.usrName,
-    required this.password,
+    required this.usrPassword,
   });
 
-  factory Users.fromJson(Map<String, dynamic> json) => Users(
-    userId: json["userId"],
+  factory Users.fromMap(Map<String, dynamic> json) => Users(
+    usrId: json["usrId"],
     usrName: json["usrName"],
-    password: json["password"],
+    usrPassword: json["usrPassword"],
   );
 
   Map<String, dynamic> toMap() => {
-    "userId": userId,
+    "usrId": usrId,
     "usrName": usrName,
-    "password": password,
+    "usrPassword": usrPassword,
   };
 }

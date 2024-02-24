@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:users_app/authentication/signup_screen_2.dart';
+import 'package:users_app/views/notes.dart';
 import 'authentication/login_screen.dart';
 import 'authentication/login_screen_2.dart';
+import 'package:sqflite_common/sqlite_api.dart';
 
 
 void main() {

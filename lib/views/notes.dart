@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:users_app/JsonModels/note_model.dart';
 import 'package:users_app/SQLite/sqlite.dart';
-import 'package:users_app/views/create_note.dart';
+import 'package:users_app/Views/create_note.dart';
 
 class Notes extends StatefulWidget {
   const Notes({super.key});
