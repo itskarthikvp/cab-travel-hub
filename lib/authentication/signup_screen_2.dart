@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:users_app/JsonModels/users.dart';
+import 'package:users_app/SQLite/sqlite.dart';
 import 'package:users_app/authentication/login_screen_2.dart';
 
 class SignUp extends StatefulWidget {
@@ -134,6 +136,10 @@ class _SignUpState extends State<SignUp> {
                         onPressed: () {
                           if(formKey.currentState!.validate()){
                             //Login method here
+                            final db = DatabaseHelper();
+                            db.signup(Users(usrName: username.text, password: password.text)).whenComplete(() {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) =>const LoginScreen())); //after success, will redirect to login page
+                            });
                           }
                         } ,
                         child: const Text("SIGN UP",
@@ -147,7 +153,7 @@ class _SignUpState extends State<SignUp> {
                     children: [
                       const Text("Already have an account?"),
                       TextButton(onPressed: () {
-                        //Navidate to Sign UP page
+                        //Navigate to Sign UP page
                         Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginScreen()));
 
                       }, child: const Text("Login"))

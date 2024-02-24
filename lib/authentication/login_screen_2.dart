@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:users_app/JsonModels/users.dart';
+import 'package:users_app/SQLite/sqlite.dart';
 import 'package:users_app/authentication/signup_screen_2.dart';
+import 'package:users_app/views/notes.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -14,6 +17,24 @@ class _LoginScreenState extends State<LoginScreen> {
   final password = TextEditingController();
 
   bool isVisible = false; // variable to show and hide password
+  bool isLoginTrue = false;
+  final db = DatabaseHelper();
+  
+  login() async{
+    var response = await db.login(Users(usrName: username.text, password: password.text));
+    
+    if(response == true) {
+      //if login is correct then goto notes
+      if(!mounted) return;
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const Notes()));
+    } else {
+      //set bool value true to print error message
+      setState(() {
+        isLoginTrue = true;
+      });
+    }
+    
+  }
 
   final formKey = GlobalKey<FormState>(); //create global key for our form
   @override
@@ -101,6 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: () {
                           if(formKey.currentState!.validate()){
                             //Login method here
+                            login();
                           }
                         } ,
                         child: const Text("LOGIN",
@@ -119,7 +141,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       }, child: const Text("SIGN UP"))
                     ],
-                  )
+                  ),
+
+                  //This message will be disabled by default, when username or password is incorrect, it will trigger
+                  isLoginTrue? const Text(
+                    "username or password is incorrect",
+                    style: TextStyle(color: Colors.red),
+                  ) : const SizedBox(),
 
                 ],
               ),
@@ -131,4 +159,3 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-//Stopped at 8:13 --- https://www.youtube.com/watch?v=oZujEA99kXA&t=1614s
